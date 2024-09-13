@@ -1,0 +1,152 @@
+[gd_scene load_steps=16 format=3 uid="uid://cebl3u0osnim6"]
+
+[ext_resource type="Texture2D" uid="uid://c6d864xravhap" path="res://Assets/Art/Other/icon.svg" id="1_3wupg"]
+[ext_resource type="Script" path="res://Scripts/Elephant.gd" id="2_0lmq2"]
+[ext_resource type="Texture2D" uid="uid://dqck64fru84ik" path="res://Assets/Art/Other/goduwu.png" id="2_3hrx5"]
+[ext_resource type="Script" path="res://Scripts/TrunkEnd.gd" id="3_t6df2"]
+[ext_resource type="Script" path="res://Scripts/TrunkLine.gd" id="5_xyqw1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3kvm"]
+size = Vector2(721, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jpve5"]
+radius = 41.0122
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rm8jl"]
+size = Vector2(48, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ji52y"]
+
+[sub_resource type="Gradient" id="Gradient_vd3c3"]
+colors = PackedColorArray(0, 0, 1, 1, 0.286275, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ic5sj"]
+gradient = SubResource("Gradient_vd3c3")
+width = 12
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_ow1ej"]
+offsets = PackedFloat32Array(0.846667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_rc1ts"]
+_data = [Vector2(0, 0.604396), 0.0, 0.0, 0, 0, Vector2(0.905263, 0.615385), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_oidbh"]
+colors = PackedColorArray(0, 0.929412, 0.933333, 1, 1, 0.0705882, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_112dv"]
+gradient = SubResource("Gradient_oidbh")
+height = 8
+
+[node name="CypTest" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(582, 607)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Floor"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Floor"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Elephant" type="RigidBody2D" parent="." node_paths=PackedStringArray("trunkEnd")]
+position = Vector2(571, 343)
+collision_mask = 3
+mass = 50.0
+script = ExtResource("2_0lmq2")
+trunkEnd = NodePath("TrunkSegment/TrunkSegment2/TrunkSegment3/TrunkEnd")
+
+[node name="BodySprite" type="Sprite2D" parent="Elephant"]
+scale = Vector2(0.0875, 0.0875)
+texture = ExtResource("2_3hrx5")
+
+[node name="BodyShape" type="CollisionShape2D" parent="Elephant"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_jpve5")
+debug_color = Color(0.822816, 0.343764, 0.538809, 0.42)
+
+[node name="TrunkSegment" type="RigidBody2D" parent="Elephant"]
+position = Vector2(2, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="Elephant/TrunkSegment"]
+position = Vector2(12, 0)
+shape = SubResource("RectangleShape2D_rm8jl")
+
+[node name="Pin" type="PinJoint2D" parent="Elephant/TrunkSegment"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
+[node name="TrunkSegment2" type="RigidBody2D" parent="Elephant/TrunkSegment"]
+position = Vector2(31, -1)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="Elephant/TrunkSegment/TrunkSegment2"]
+position = Vector2(18, 0.5)
+shape = SubResource("RectangleShape2D_rm8jl")
+
+[node name="Pin" type="PinJoint2D" parent="Elephant/TrunkSegment/TrunkSegment2"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
+[node name="TrunkSegment3" type="RigidBody2D" parent="Elephant/TrunkSegment/TrunkSegment2"]
+position = Vector2(42, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="Elephant/TrunkSegment/TrunkSegment2/TrunkSegment3"]
+position = Vector2(18, 0.5)
+shape = SubResource("RectangleShape2D_rm8jl")
+
+[node name="Pin" type="PinJoint2D" parent="Elephant/TrunkSegment/TrunkSegment2/TrunkSegment3"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
+[node name="TrunkEnd" type="RigidBody2D" parent="Elephant/TrunkSegment/TrunkSegment2/TrunkSegment3"]
+position = Vector2(38, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_t6df2")
+
+[node name="Shape" type="CollisionShape2D" parent="Elephant/TrunkSegment/TrunkSegment2/TrunkSegment3/TrunkEnd"]
+position = Vector2(4.5, 0.5)
+shape = SubResource("CircleShape2D_ji52y")
+
+[node name="Pin" type="PinJoint2D" parent="Elephant/TrunkSegment/TrunkSegment2/TrunkSegment3/TrunkEnd"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
+[node name="Water" type="CPUParticles2D" parent="Elephant/TrunkSegment/TrunkSegment2/TrunkSegment3/TrunkEnd"]
+position = Vector2(15, 0)
+emitting = false
+amount = 32
+lifetime = 0.5
+texture = SubResource("GradientTexture2D_ic5sj")
+gravity = Vector2(0, 50)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+color_ramp = SubResource("Gradient_ow1ej")
+
+[node name="TrunkLine" type="Line2D" parent="Elephant" node_paths=PackedStringArray("refPoints")]
+position = Vector2(-2, 0)
+points = PackedVector2Array(0, 0, 15, 0, 35, 0, 55, 0, 75, 0, 100, 0, 120, 0)
+width = 25.0
+width_curve = SubResource("Curve_rc1ts")
+texture = SubResource("GradientTexture2D_112dv")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("5_xyqw1")
+refPoints = [NodePath("../TrunkSegment/Pin"), NodePath("../TrunkSegment/TrunkSegment2/Pin"), NodePath("../TrunkSegment/TrunkSegment2/TrunkSegment3/Pin"), NodePath("../TrunkSegment/TrunkSegment2/TrunkSegment3/TrunkEnd/Pin")]
