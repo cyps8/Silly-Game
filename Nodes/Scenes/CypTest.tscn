@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cebl3u0osnim6"]
+[gd_scene load_steps=18 format=3 uid="uid://cebl3u0osnim6"]
 
 [ext_resource type="Texture2D" uid="uid://c6d864xravhap" path="res://Assets/Art/Other/icon.svg" id="1_3wupg"]
 [ext_resource type="Script" path="res://Scripts/Elephant.gd" id="2_0lmq2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://oomqiax53d8c" path="res://Assets/Art/Elephant/Elephant - Body - Jump.png" id="4_p4vr3"]
 [ext_resource type="Texture2D" uid="uid://bthmnrj7yfigw" path="res://Assets/Art/Elephant/stress-8941886_1280.png" id="5_sx40q"]
 [ext_resource type="Script" path="res://Scripts/TrunkLine.gd" id="5_xyqw1"]
+[ext_resource type="Script" path="res://Nodes/Scenes/JuiceArea.gd" id="8_5vvm3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s3kvm"]
 size = Vector2(721, 20)
@@ -37,6 +38,9 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 _data = [Vector2(0, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.9, 0.43956), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldplv"]
+size = Vector2(157, 119)
+
 [node name="CypTest" type="Node2D"]
 
 [node name="Floor" type="StaticBody2D" parent="."]
@@ -53,13 +57,16 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Elephant" type="RigidBody2D" parent="." node_paths=PackedStringArray("trunkStart", "trunkEnd")]
+[node name="Elephant" type="RigidBody2D" parent="." node_paths=PackedStringArray("trunkStart", "trunkEnd", "waterParticles", "meter")]
+z_index = 1
 position = Vector2(571, 343)
 mass = 50.0
 script = ExtResource("2_0lmq2")
 trunkStart = NodePath("TrunkSegment/Pin")
 trunkEnd = NodePath("TrunkSegment/TrunkSegment2/TrunkSegment3/TrunkEnd")
 bodies = Array[Texture2D]([ExtResource("3_ja53t"), ExtResource("4_p4vr3")])
+waterParticles = NodePath("TrunkSegment/TrunkSegment2/TrunkSegment3/TrunkEnd/Water")
+meter = NodePath("../UI/c/TextureProgressBar")
 
 [node name="BodySprite" type="Sprite2D" parent="Elephant"]
 texture_filter = 1
@@ -113,8 +120,8 @@ node_b = NodePath("..")
 
 [node name="TrunkEnd" type="RigidBody2D" parent="Elephant/TrunkSegment/TrunkSegment2/TrunkSegment3"]
 position = Vector2(38, 0)
-collision_layer = 0
-collision_mask = 2
+collision_layer = 4
+collision_mask = 6
 script = ExtResource("3_t6df2")
 
 [node name="Shape" type="CollisionShape2D" parent="Elephant/TrunkSegment/TrunkSegment2/TrunkSegment3/TrunkEnd"]
@@ -150,3 +157,52 @@ script = ExtResource("5_xyqw1")
 refPoints = [NodePath("../TrunkSegment/Pin"), NodePath("../TrunkSegment/TrunkSegment2/Pin"), NodePath("../TrunkSegment/TrunkSegment2/TrunkSegment3/Pin"), NodePath("../TrunkSegment/TrunkSegment2/TrunkSegment3/TrunkEnd/Pin")]
 
 [node name="Camera2D" type="Camera2D" parent="Elephant"]
+position = Vector2(11, -178)
+
+[node name="JuiceArea" type="Area2D" parent="."]
+position = Vector2(339, 536)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("8_5vvm3")
+
+[node name="Sprite2D" type="Sprite2D" parent="JuiceArea"]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(0.122266, 0.165621)
+texture = ExtResource("5_sx40q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JuiceArea"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ldplv")
+
+[node name="Label" type="Label" parent="JuiceArea"]
+offset_left = -75.0
+offset_top = -55.0
+offset_right = 22.0
+offset_bottom = -32.0
+text = "ORNAG JUSE"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="c" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/c"]
+modulate = Color(1, 0, 1, 1)
+layout_mode = 0
+offset_left = 37.0
+offset_top = 469.0
+offset_right = 165.0
+offset_bottom = 597.0
+max_value = 1.0
+step = 0.01
+value = 0.5
+fill_mode = 3
+texture_progress = ExtResource("1_3wupg")
+
+[connection signal="body_entered" from="JuiceArea" to="JuiceArea" method="TrunkEnter"]
+[connection signal="body_exited" from="JuiceArea" to="JuiceArea" method="TrunkExit"]
