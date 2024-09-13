@@ -1,0 +1,31 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Silly Game"
+run/main_scene="res://Nodes/Scenes/main.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(0.195232, 0.078524, 0.121671, 1)
+config/icon="res://Assets/Art/Other/goduwu.png"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Nodes/": "green",
+"res://Nodes/Scenes/": "teal",
+"res://Scripts/": "pink"
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
