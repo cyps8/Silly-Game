@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cebl3u0osnim6"]
+[gd_scene load_steps=16 format=3 uid="uid://cebl3u0osnim6"]
 
 [ext_resource type="Texture2D" uid="uid://c6d864xravhap" path="res://Assets/Art/Other/icon.svg" id="1_3wupg"]
 [ext_resource type="Script" path="res://Scripts/Elephant.gd" id="2_0lmq2"]
 [ext_resource type="Texture2D" uid="uid://b1egl3ctw6sfq" path="res://Assets/Art/Elephant/Elephant - Body - Idle.png" id="3_ja53t"]
 [ext_resource type="Script" path="res://Scripts/TrunkEnd.gd" id="3_t6df2"]
+[ext_resource type="Texture2D" uid="uid://oomqiax53d8c" path="res://Assets/Art/Elephant/Elephant - Body - Jump.png" id="4_p4vr3"]
 [ext_resource type="Texture2D" uid="uid://bthmnrj7yfigw" path="res://Assets/Art/Elephant/stress-8941886_1280.png" id="5_sx40q"]
 [ext_resource type="Script" path="res://Scripts/TrunkLine.gd" id="5_xyqw1"]
 
@@ -52,11 +53,13 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Elephant" type="RigidBody2D" parent="." node_paths=PackedStringArray("trunkEnd")]
+[node name="Elephant" type="RigidBody2D" parent="." node_paths=PackedStringArray("trunkStart", "trunkEnd")]
 position = Vector2(571, 343)
 mass = 50.0
 script = ExtResource("2_0lmq2")
+trunkStart = NodePath("TrunkSegment/Pin")
 trunkEnd = NodePath("TrunkSegment/TrunkSegment2/TrunkSegment3/TrunkEnd")
+bodies = Array[Texture2D]([ExtResource("3_ja53t"), ExtResource("4_p4vr3")])
 
 [node name="BodySprite" type="Sprite2D" parent="Elephant"]
 texture_filter = 1
