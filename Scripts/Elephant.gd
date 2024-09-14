@@ -19,9 +19,9 @@ func _init():
 
 var watering: bool = false
 
-var juiceMax = 10.0
+var juiceMax = 30.0
 
-var juice = 5.0
+var juice = 10.0
 
 var inJuice: bool = false
 
