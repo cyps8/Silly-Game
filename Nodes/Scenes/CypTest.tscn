@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b5oop54venjk5"]
+[gd_scene load_steps=25 format=3 uid="uid://b5oop54venjk5"]
 
 [ext_resource type="Texture2D" uid="uid://c6d864xravhap" path="res://Assets/Art/Other/icon.svg" id="1_3wupg"]
 [ext_resource type="Script" path="res://Scripts/Elephant.gd" id="2_0lmq2"]
@@ -6,7 +6,10 @@
 [ext_resource type="Script" path="res://Scripts/TrunkEnd.gd" id="3_t6df2"]
 [ext_resource type="Texture2D" uid="uid://oomqiax53d8c" path="res://Assets/Art/Elephant/Elephant - Body - Jump.png" id="4_p4vr3"]
 [ext_resource type="Texture2D" uid="uid://bthmnrj7yfigw" path="res://Assets/Art/Elephant/stress-8941886_1280.png" id="5_sx40q"]
+[ext_resource type="Texture2D" uid="uid://e1bik7en2tgn" path="res://Assets/Art/Elephant/Elephant - Tail - Idle.png" id="5_uyd25"]
 [ext_resource type="Script" path="res://Scripts/TrunkLine.gd" id="5_xyqw1"]
+[ext_resource type="Texture2D" uid="uid://dpw76687vmjtv" path="res://Assets/Art/Elephant/Elephant - Face - Glasses.png" id="6_8vlvv"]
+[ext_resource type="Texture2D" uid="uid://d33mcs7v1g8p1" path="res://Assets/Art/Elephant/Elephant - Hat - 1.png" id="7_1keff"]
 [ext_resource type="Script" path="res://Nodes/Scenes/JuiceArea.gd" id="8_5vvm3"]
 [ext_resource type="Texture2D" uid="uid://c1rx0a378gcls" path="res://Assets/Art/Other/corgi-4415649_1280.jpg" id="9_jdmdd"]
 
@@ -14,7 +17,7 @@
 size = Vector2(721, 20)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_edq8i"]
-bounce = 1.0
+bounce = 0.15
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ss0t"]
 size = Vector2(123, 69)
@@ -159,6 +162,24 @@ texture_filter = 1
 position = Vector2(4.50001, -16)
 scale = Vector2(2, 2)
 texture = ExtResource("3_ja53t")
+
+[node name="TailSprite" type="Sprite2D" parent="Elephant"]
+texture_filter = 1
+position = Vector2(4.50001, -16)
+scale = Vector2(2, 2)
+texture = ExtResource("5_uyd25")
+
+[node name="FaceSprite" type="Sprite2D" parent="Elephant"]
+texture_filter = 1
+position = Vector2(4.50001, -16)
+scale = Vector2(2, 2)
+texture = ExtResource("6_8vlvv")
+
+[node name="HatSprite" type="Sprite2D" parent="Elephant"]
+texture_filter = 1
+position = Vector2(4.50001, -16)
+scale = Vector2(2, 2)
+texture = ExtResource("7_1keff")
 
 [node name="BodyShape" type="CollisionShape2D" parent="Elephant"]
 position = Vector2(6.5, -2.5)
