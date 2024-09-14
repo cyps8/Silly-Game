@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bl3mcqrcw1djs"]
+
+[ext_resource type="Texture2D" uid="uid://6fn68ur44we" path="res://Assets/Art/Fire/Fire Mid 1.png" id="1_w8xmj"]
+[ext_resource type="Texture2D" uid="uid://dlm5lgodl2p62" path="res://Assets/Art/Fire/Fire Mid 2.png" id="2_eavqm"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w8xmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_eavqm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
