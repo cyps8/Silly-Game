@@ -1,28 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl0en40378rln"]
+[gd_scene load_steps=3 format=3 uid="uid://bl0en40378rln"]
 
-[ext_resource type="SpriteFrames" uid="uid://vg5addof0v3e" path="res://Assets/Fire_Back.tres" id="1_b224l"]
-[ext_resource type="SpriteFrames" uid="uid://bl3mcqrcw1djs" path="res://Assets/Fire_Mid.tres" id="2_mxrsj"]
-[ext_resource type="SpriteFrames" uid="uid://o85e8k835r1v" path="res://Assets/Fire_Front.tres" id="3_o4l6g"]
+[ext_resource type="PackedScene" uid="uid://ddivybrsb0klj" path="res://Assets/Prefabs/fire_bg.tscn" id="2_vf1t4"]
 [ext_resource type="Texture2D" uid="uid://coo4h315saq60" path="res://Assets/Art/Fire/Evil Skeleton Background.png" id="4_he5lo"]
 
 [node name="Node2D" type="Node2D"]
-
-[node name="Fire Back" type="AnimatedSprite2D" parent="."]
-position = Vector2(632, 341)
-sprite_frames = ExtResource("1_b224l")
-frame_progress = 0.194563
-
-[node name="Fire Mid" type="AnimatedSprite2D" parent="."]
-position = Vector2(632, 341)
-sprite_frames = ExtResource("2_mxrsj")
-frame_progress = 0.447922
-
-[node name="Fire Front" type="AnimatedSprite2D" parent="."]
-position = Vector2(632, 341)
-sprite_frames = ExtResource("3_o4l6g")
-frame_progress = 0.72822
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(726, 288)
 scale = Vector2(0.605371, 0.605371)
 texture = ExtResource("4_he5lo")
+
+[node name="FIRE BG" parent="." instance=ExtResource("2_vf1t4")]

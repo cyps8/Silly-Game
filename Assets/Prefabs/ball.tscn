@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmcvwkg8tno0g"]
+
+[ext_resource type="Texture2D" uid="uid://cd7fmq48j87nt" path="res://Assets/Art/Cheese/Cheese.png" id="1_1g426"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_36y5f"]
+friction = 0.0
+bounce = 1.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eqjm5"]
+
+[node name="BALL" type="RigidBody2D"]
+position = Vector2(911, 148)
+physics_material_override = SubResource("PhysicsMaterial_36y5f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.239018, 0.239018)
+texture = ExtResource("1_1g426")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.25)
+scale = Vector2(3.14706, 3.14706)
+shape = SubResource("CircleShape2D_eqjm5")

@@ -1,6 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://b5oop54venjk5"]
 
 [ext_resource type="Texture2D" uid="uid://c6d864xravhap" path="res://Assets/Art/Other/icon.svg" id="1_3wupg"]
+[ext_resource type="PackedScene" uid="uid://ddivybrsb0klj" path="res://Assets/Prefabs/fire_bg.tscn" id="1_mmdk1"]
 [ext_resource type="Script" path="res://Scripts/Elephant.gd" id="2_0lmq2"]
 [ext_resource type="Texture2D" uid="uid://b1egl3ctw6sfq" path="res://Assets/Art/Elephant/Elephant - Body - Idle.png" id="3_ja53t"]
 [ext_resource type="Script" path="res://Scripts/TrunkEnd.gd" id="3_t6df2"]
@@ -11,10 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dpw76687vmjtv" path="res://Assets/Art/Elephant/Elephant - Face - Glasses.png" id="6_8vlvv"]
 [ext_resource type="Texture2D" uid="uid://d33mcs7v1g8p1" path="res://Assets/Art/Elephant/Elephant - Hat - 1.png" id="7_1keff"]
 [ext_resource type="Script" path="res://Nodes/Scenes/JuiceArea.gd" id="8_5vvm3"]
-[ext_resource type="Texture2D" uid="uid://c1rx0a378gcls" path="res://Assets/Art/Other/corgi-4415649_1280.jpg" id="9_jdmdd"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3kvm"]
-size = Vector2(721, 20)
+[ext_resource type="PackedScene" uid="uid://dmcvwkg8tno0g" path="res://Assets/Prefabs/ball.tscn" id="12_rtpvq"]
+[ext_resource type="Script" path="res://Scripts/spinny_arena.gd" id="14_a1j5c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_edq8i"]
 bounce = 0.15
@@ -48,102 +47,76 @@ point_count = 3
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldplv"]
 size = Vector2(157, 119)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_36y5f"]
-friction = 0.0
-bounce = 1.5
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_keh4n"]
-size = Vector2(94, 61.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3kvm"]
+size = Vector2(721, 20)
 
 [node name="CypTest" type="Node2D"]
 
-[node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(582, 607)
-collision_layer = 3
-collision_mask = 3
+[node name="FIRE" type="Node2D" parent="."]
+visible = false
 
-[node name="Sprite" type="Sprite2D" parent="Floor"]
-position = Vector2(-0.500015, 7.62939e-06)
-scale = Vector2(5.64844, 0.171875)
-texture = ExtResource("1_3wupg")
+[node name="FIRE BG" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(-129, -724)
 
-[node name="Shape" type="CollisionShape2D" parent="Floor"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_s3kvm")
+[node name="FIRE BG2" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(1220, 1030)
+rotation = -3.13817
 
-[node name="Ceiling" type="StaticBody2D" parent="."]
-position = Vector2(539, -605)
-collision_layer = 3
-collision_mask = 3
+[node name="FIRE BG3" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(-1723, -730)
 
-[node name="Sprite" type="Sprite2D" parent="Ceiling"]
-position = Vector2(-0.500015, 7.62939e-06)
-scale = Vector2(5.64844, 0.171875)
-texture = ExtResource("1_3wupg")
+[node name="FIRE BG4" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(-374, 1024)
+rotation = -3.13817
 
-[node name="Shape" type="CollisionShape2D" parent="Ceiling"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_s3kvm")
+[node name="FIRE BG5" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(1458, -730)
 
-[node name="Wall" type="StaticBody2D" parent="."]
-position = Vector2(48, 266)
-rotation = 1.16567
-collision_layer = 3
-collision_mask = 3
+[node name="FIRE BG6" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(2807, 1024)
+rotation = -3.13817
 
-[node name="Sprite" type="Sprite2D" parent="Wall"]
-position = Vector2(-0.500015, 7.62939e-06)
-scale = Vector2(5.64844, 0.171875)
-texture = ExtResource("1_3wupg")
+[node name="FIRE BG7" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(-250, 605)
 
-[node name="Shape" type="CollisionShape2D" parent="Wall"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_s3kvm")
+[node name="FIRE BG8" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(1099, 2359)
+rotation = -3.13817
 
-[node name="Wall2" type="StaticBody2D" parent="."]
-position = Vector2(1097, 270)
-rotation = 1.94035
-collision_layer = 3
-collision_mask = 3
+[node name="FIRE BG9" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(-1844, 599)
 
-[node name="Sprite" type="Sprite2D" parent="Wall2"]
-position = Vector2(-0.500015, 7.62939e-06)
-scale = Vector2(5.64844, 0.171875)
-texture = ExtResource("1_3wupg")
+[node name="FIRE BG10" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(-495, 2353)
+rotation = -3.13817
 
-[node name="Shape" type="CollisionShape2D" parent="Wall2"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_s3kvm")
+[node name="FIRE BG11" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(1337, 599)
 
-[node name="Wall3" type="StaticBody2D" parent="."]
-position = Vector2(48, -283)
-rotation = -1.02772
-collision_layer = 3
-collision_mask = 3
+[node name="FIRE BG12" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(2686, 2353)
+rotation = -3.13817
 
-[node name="Sprite" type="Sprite2D" parent="Wall3"]
-position = Vector2(-0.500015, 7.62939e-06)
-scale = Vector2(5.64844, 0.171875)
-texture = ExtResource("1_3wupg")
+[node name="FIRE BG13" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(-242, -2136)
 
-[node name="Shape" type="CollisionShape2D" parent="Wall3"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_s3kvm")
+[node name="FIRE BG14" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(1107, -382)
+rotation = -3.13817
 
-[node name="Wall4" type="StaticBody2D" parent="."]
-position = Vector2(1044, -322)
-rotation = 0.95453
-collision_layer = 3
-collision_mask = 3
+[node name="FIRE BG15" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(-1836, -2142)
 
-[node name="Sprite" type="Sprite2D" parent="Wall4"]
-position = Vector2(-0.500015, 7.62939e-06)
-scale = Vector2(5.64844, 0.171875)
-texture = ExtResource("1_3wupg")
+[node name="FIRE BG16" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(-487, -388)
+rotation = -3.13817
 
-[node name="Shape" type="CollisionShape2D" parent="Wall4"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_s3kvm")
+[node name="FIRE BG17" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(1345, -2142)
+
+[node name="FIRE BG18" parent="FIRE" instance=ExtResource("1_mmdk1")]
+position = Vector2(2694, -388)
+rotation = -3.13817
 
 [node name="Elephant" type="RigidBody2D" parent="." node_paths=PackedStringArray("trunkStart", "trunkEnd", "waterParticles", "meter")]
 z_index = 1
@@ -311,125 +284,322 @@ value = 0.5
 fill_mode = 3
 texture_progress = ExtResource("1_3wupg")
 
-[node name="BALL" type="RigidBody2D" parent="."]
-position = Vector2(911, 148)
-physics_material_override = SubResource("PhysicsMaterial_36y5f")
+[node name="Bouncy Things" type="Node" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="BALL"]
-scale = Vector2(0.0726615, 0.0726615)
-texture = ExtResource("9_jdmdd")
+[node name="BALL11" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(892, -18)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BALL"]
-position = Vector2(0, 0.25)
-shape = SubResource("RectangleShape2D_keh4n")
+[node name="BALL" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
 
-[node name="BALL2" type="RigidBody2D" parent="."]
-position = Vector2(251, -112)
-physics_material_override = SubResource("PhysicsMaterial_36y5f")
+[node name="BALL2" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(190, -115)
 
-[node name="Sprite2D" type="Sprite2D" parent="BALL2"]
-scale = Vector2(0.0726615, 0.0726615)
-texture = ExtResource("9_jdmdd")
+[node name="BALL3" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(371, -215)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BALL2"]
-position = Vector2(0, 0.25)
-shape = SubResource("RectangleShape2D_keh4n")
+[node name="BALL4" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(545, -34)
 
-[node name="BALL3" type="RigidBody2D" parent="."]
-position = Vector2(435, -329)
-physics_material_override = SubResource("PhysicsMaterial_36y5f")
+[node name="BALL5" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(694, -208)
 
-[node name="Sprite2D" type="Sprite2D" parent="BALL3"]
-scale = Vector2(0.0726615, 0.0726615)
-texture = ExtResource("9_jdmdd")
+[node name="BALL6" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(596, -399)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BALL3"]
-position = Vector2(0, 0.25)
-shape = SubResource("RectangleShape2D_keh4n")
+[node name="BALL7" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(411, -471)
 
-[node name="BALL4" type="RigidBody2D" parent="."]
-position = Vector2(926, -178)
-physics_material_override = SubResource("PhysicsMaterial_36y5f")
+[node name="BALL8" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(724, -531)
 
-[node name="Sprite2D" type="Sprite2D" parent="BALL4"]
-scale = Vector2(0.0726615, 0.0726615)
-texture = ExtResource("9_jdmdd")
+[node name="BALL9" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(405, 128)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BALL4"]
-position = Vector2(0, 0.25)
-shape = SubResource("RectangleShape2D_keh4n")
+[node name="BALL10" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(598, 511)
 
-[node name="BALL5" type="RigidBody2D" parent="."]
-position = Vector2(770, -422)
-physics_material_override = SubResource("PhysicsMaterial_36y5f")
+[node name="BALL12" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(500, 432)
 
-[node name="Sprite2D" type="Sprite2D" parent="BALL5"]
-scale = Vector2(0.0726615, 0.0726615)
-texture = ExtResource("9_jdmdd")
+[node name="BALL13" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(723, 449)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BALL5"]
-position = Vector2(0, 0.25)
-shape = SubResource("RectangleShape2D_keh4n")
+[node name="BALL14" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(757, 211)
 
-[node name="BALL6" type="RigidBody2D" parent="."]
-position = Vector2(589, -162)
-physics_material_override = SubResource("PhysicsMaterial_36y5f")
+[node name="BALL15" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(887, 305)
 
-[node name="Sprite2D" type="Sprite2D" parent="BALL6"]
-scale = Vector2(0.0726615, 0.0726615)
-texture = ExtResource("9_jdmdd")
+[node name="BALL16" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(360, 313)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BALL6"]
-position = Vector2(0, 0.25)
-shape = SubResource("RectangleShape2D_keh4n")
+[node name="BALL17" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(166, 198)
 
-[node name="BALL7" type="RigidBody2D" parent="."]
-position = Vector2(216, -243)
-physics_material_override = SubResource("PhysicsMaterial_36y5f")
+[node name="BALL18" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(266, -8)
 
-[node name="Sprite2D" type="Sprite2D" parent="BALL7"]
-scale = Vector2(0.0726615, 0.0726615)
-texture = ExtResource("9_jdmdd")
+[node name="BALL19" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(657, 79)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BALL7"]
-position = Vector2(0, 0.25)
-shape = SubResource("RectangleShape2D_keh4n")
+[node name="BALL20" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+position = Vector2(874, -240)
 
-[node name="BALL8" type="RigidBody2D" parent="."]
-position = Vector2(153, 125)
-physics_material_override = SubResource("PhysicsMaterial_36y5f")
+[node name="Spinny Arena" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="BALL8"]
-scale = Vector2(0.0726615, 0.0726615)
-texture = ExtResource("9_jdmdd")
+[node name="Floor" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(582, 607)
+collision_layer = 3
+collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BALL8"]
-position = Vector2(0, 0.25)
-shape = SubResource("RectangleShape2D_keh4n")
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
 
-[node name="BALL9" type="RigidBody2D" parent="."]
-position = Vector2(559, 100)
-physics_material_override = SubResource("PhysicsMaterial_36y5f")
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Sprite2D" type="Sprite2D" parent="BALL9"]
-scale = Vector2(0.0726615, 0.0726615)
-texture = ExtResource("9_jdmdd")
+[node name="Ceiling" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(539, -605)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BALL9"]
-position = Vector2(0, 0.25)
-shape = SubResource("RectangleShape2D_keh4n")
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Ceiling"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
 
-[node name="BALL10" type="RigidBody2D" parent="."]
-position = Vector2(695, -51)
-physics_material_override = SubResource("PhysicsMaterial_36y5f")
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Ceiling"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Sprite2D" type="Sprite2D" parent="BALL10"]
-scale = Vector2(0.0726615, 0.0726615)
-texture = ExtResource("9_jdmdd")
+[node name="Wall" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(-18, 602)
+rotation = 1.16567
+scale = Vector2(1, 1)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BALL10"]
-position = Vector2(0, 0.25)
-shape = SubResource("RectangleShape2D_keh4n")
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall2" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(1155, 731)
+rotation = 1.94035
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall2"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall2"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall3" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(-107, 1356)
+rotation = -1.02772
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall3"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall3"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall4" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(1104, 1407)
+rotation = 0.95453
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall4"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall4"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall5" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(528, 1555)
+rotation = 0.95453
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall5"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall5"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall6" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(-711, 2098)
+rotation = 0.95453
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall6"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall6"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall7" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(183, 2426)
+rotation = 0.95453
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall7"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall7"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall8" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(1235, 2398)
+rotation = 0.95453
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall8"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall8"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall9" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(2146, 2115)
+rotation = 0.95453
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall9"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall9"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall10" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(2970, 2947)
+rotation = 0.95453
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall10"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall10"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall11" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(2066, 3419)
+rotation = 0.95453
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall11"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall11"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall12" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(906, 3651)
+rotation = 0.95453
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall12"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall12"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall13" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(-398, 3619)
+rotation = 0.95453
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall13"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall13"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall14" type="StaticBody2D" parent="Spinny Arena"]
+position = Vector2(-1622, 3067)
+rotation = 0.95453
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall14"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall14"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
 
 [connection signal="body_entered" from="JuiceArea" to="JuiceArea" method="TrunkEnter"]
 [connection signal="body_exited" from="JuiceArea" to="JuiceArea" method="TrunkExit"]
