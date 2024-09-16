@@ -347,7 +347,7 @@ position = Vector2(874, -240)
 
 [node name="Spinny Arena" type="Node2D" parent="."]
 
-[node name="Floor" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Floor" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(582, 607)
 collision_layer = 3
 collision_mask = 3
@@ -361,7 +361,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Ceiling" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Ceiling" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(539, -605)
 collision_layer = 3
 collision_mask = 3
@@ -376,10 +376,9 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(-18, 602)
 rotation = 1.16567
-scale = Vector2(1, 1)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("14_a1j5c")
@@ -393,7 +392,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall2" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall2" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(1155, 731)
 rotation = 1.94035
 collision_layer = 3
@@ -409,7 +408,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall3" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall3" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(-107, 1356)
 rotation = -1.02772
 collision_layer = 3
@@ -425,7 +424,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall4" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall4" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(1104, 1407)
 rotation = 0.95453
 collision_layer = 3
@@ -441,7 +440,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall5" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall5" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(528, 1555)
 rotation = 0.95453
 collision_layer = 3
@@ -457,7 +456,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall6" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall6" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(-711, 2098)
 rotation = 0.95453
 collision_layer = 3
@@ -473,7 +472,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall7" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall7" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(183, 2426)
 rotation = 0.95453
 collision_layer = 3
@@ -489,7 +488,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall8" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall8" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(1235, 2398)
 rotation = 0.95453
 collision_layer = 3
@@ -505,7 +504,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall9" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall9" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(2146, 2115)
 rotation = 0.95453
 collision_layer = 3
@@ -521,7 +520,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall10" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall10" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(2970, 2947)
 rotation = 0.95453
 collision_layer = 3
@@ -537,7 +536,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall11" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall11" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(2066, 3419)
 rotation = 0.95453
 collision_layer = 3
@@ -553,7 +552,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall12" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall12" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(906, 3651)
 rotation = 0.95453
 collision_layer = 3
@@ -569,7 +568,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall13" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall13" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(-398, 3619)
 rotation = 0.95453
 collision_layer = 3
@@ -585,7 +584,7 @@ texture = ExtResource("1_3wupg")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
-[node name="Wall14" type="StaticBody2D" parent="Spinny Arena"]
+[node name="Wall14" type="AnimatableBody2D" parent="Spinny Arena"]
 position = Vector2(-1622, 3067)
 rotation = 0.95453
 collision_layer = 3
