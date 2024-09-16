@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b5oop54venjk5"]
+[gd_scene load_steps=28 format=3 uid="uid://b5oop54venjk5"]
 
 [ext_resource type="Texture2D" uid="uid://c6d864xravhap" path="res://Assets/Art/Other/icon.svg" id="1_3wupg"]
 [ext_resource type="PackedScene" uid="uid://ddivybrsb0klj" path="res://Assets/Prefabs/fire_bg.tscn" id="1_mmdk1"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://brio406u2r7dr" path="res://Assets/Art/Background/sunrise-8235464_1280.jpg" id="12_2goxj"]
 [ext_resource type="PackedScene" uid="uid://dmcvwkg8tno0g" path="res://Assets/Prefabs/ball.tscn" id="12_rtpvq"]
 [ext_resource type="Script" path="res://Scripts/spinny_arena.gd" id="14_a1j5c"]
+[ext_resource type="Texture2D" uid="uid://g8gg3gtdijut" path="res://Assets/Art/Other/apple-1122537_1280.jpg" id="14_r2jl6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_edq8i"]
 bounce = 0.15
@@ -252,7 +253,7 @@ position = Vector2(11, -178)
 
 [node name="Sprite2D" type="Sprite2D" parent="Elephant/Camera2D"]
 z_index = -10
-scale = Vector2(0.916169, 0.762397)
+scale = Vector2(0.920117, 0.761125)
 texture = ExtResource("12_2goxj")
 
 [node name="JuiceArea" type="Area2D" parent="."]
@@ -292,93 +293,123 @@ modulate = Color(1, 0, 1, 1)
 layout_mode = 0
 offset_left = 37.0
 offset_top = 469.0
-offset_right = 165.0
-offset_bottom = 597.0
+offset_right = 1317.0
+offset_bottom = 1289.0
+scale = Vector2(0.0748059, 0.169965)
 max_value = 1.0
 step = 0.01
 value = 0.5
 fill_mode = 3
-texture_progress = ExtResource("1_3wupg")
+texture_progress = ExtResource("14_r2jl6")
+
+[node name="Label2" type="Label" parent="UI/c"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 562.0
+offset_right = 150.0
+offset_bottom = 611.0
+text = "hi is me 
+miss ornagj uise"
 
 [node name="Bouncy Things" type="Node" parent="."]
 
 [node name="BALL11" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(923, -56)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL2" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(190, -115)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL3" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(371, -215)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL4" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(545, -34)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL5" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(694, -208)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL6" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(596, -399)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL7" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(411, -471)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL8" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(724, -531)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL9" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(405, 128)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL10" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(598, 511)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL12" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(500, 432)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL13" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(723, 449)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL14" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(757, 211)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL15" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(887, 305)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL16" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(360, 313)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL17" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(166, 198)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL18" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(266, -8)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL19" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(657, 79)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL20" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(874, -240)
+speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="Spinny Arena" type="Node2D" parent="."]
