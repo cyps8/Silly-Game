@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b5oop54venjk5"]
+[gd_scene load_steps=27 format=3 uid="uid://b5oop54venjk5"]
 
 [ext_resource type="Texture2D" uid="uid://c6d864xravhap" path="res://Assets/Art/Other/icon.svg" id="1_3wupg"]
 [ext_resource type="PackedScene" uid="uid://ddivybrsb0klj" path="res://Assets/Prefabs/fire_bg.tscn" id="1_mmdk1"]
@@ -6,12 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://b1egl3ctw6sfq" path="res://Assets/Art/Elephant/Elephant - Body - Idle.png" id="3_ja53t"]
 [ext_resource type="Script" path="res://Scripts/TrunkEnd.gd" id="3_t6df2"]
 [ext_resource type="Texture2D" uid="uid://oomqiax53d8c" path="res://Assets/Art/Elephant/Elephant - Body - Jump.png" id="4_p4vr3"]
+[ext_resource type="Texture2D" uid="uid://bpn3i84lobq12" path="res://Assets/Art/Elephant/Blalon.png" id="5_sjxq3"]
 [ext_resource type="Texture2D" uid="uid://bthmnrj7yfigw" path="res://Assets/Art/Elephant/stress-8941886_1280.png" id="5_sx40q"]
 [ext_resource type="Texture2D" uid="uid://e1bik7en2tgn" path="res://Assets/Art/Elephant/Elephant - Tail - Idle.png" id="5_uyd25"]
 [ext_resource type="Script" path="res://Scripts/TrunkLine.gd" id="5_xyqw1"]
 [ext_resource type="Texture2D" uid="uid://dpw76687vmjtv" path="res://Assets/Art/Elephant/Elephant - Face - Glasses.png" id="6_8vlvv"]
 [ext_resource type="Texture2D" uid="uid://d33mcs7v1g8p1" path="res://Assets/Art/Elephant/Elephant - Hat - 1.png" id="7_1keff"]
 [ext_resource type="Script" path="res://Nodes/Scenes/JuiceArea.gd" id="8_5vvm3"]
+[ext_resource type="Texture2D" uid="uid://brio406u2r7dr" path="res://Assets/Art/Background/sunrise-8235464_1280.jpg" id="12_2goxj"]
 [ext_resource type="PackedScene" uid="uid://dmcvwkg8tno0g" path="res://Assets/Prefabs/ball.tscn" id="12_rtpvq"]
 [ext_resource type="Script" path="res://Scripts/spinny_arena.gd" id="14_a1j5c"]
 
@@ -119,7 +121,7 @@ position = Vector2(1345, -2142)
 position = Vector2(2694, -388)
 rotation = -3.13817
 
-[node name="Elephant" type="RigidBody2D" parent="." node_paths=PackedStringArray("trunkStart", "trunkEnd", "waterParticles", "meter")]
+[node name="Elephant" type="RigidBody2D" parent="." node_paths=PackedStringArray("trunkStart", "trunkEnd", "waterParticles", "meter", "blalonSprite")]
 z_index = 1
 position = Vector2(571, 343)
 mass = 50.0
@@ -130,6 +132,14 @@ trunkEnd = NodePath("TrunkSegment/TrunkSegment2/TrunkSegment3/TrunkEnd")
 bodies = Array[Texture2D]([ExtResource("3_ja53t"), ExtResource("4_p4vr3")])
 waterParticles = NodePath("TrunkSegment/TrunkSegment2/TrunkSegment3/TrunkEnd/Water")
 meter = NodePath("../UI/c/TextureProgressBar")
+floatSpeed = 1000.0
+blalonSprite = NodePath("Blalon Sprite")
+
+[node name="Blalon Sprite" type="Sprite2D" parent="Elephant"]
+texture_filter = 1
+position = Vector2(0, -67)
+scale = Vector2(0.21003, 0.21003)
+texture = ExtResource("5_sjxq3")
 
 [node name="BodySprite" type="Sprite2D" parent="Elephant"]
 texture_filter = 1
@@ -240,6 +250,11 @@ refPoints = [NodePath("../TrunkSegment/Pin"), NodePath("../TrunkSegment/TrunkSeg
 [node name="Camera2D" type="Camera2D" parent="Elephant"]
 position = Vector2(11, -178)
 
+[node name="Sprite2D" type="Sprite2D" parent="Elephant/Camera2D"]
+z_index = -10
+scale = Vector2(0.916169, 0.762397)
+texture = ExtResource("12_2goxj")
+
 [node name="JuiceArea" type="Area2D" parent="."]
 position = Vector2(339, 536)
 collision_layer = 4
@@ -287,64 +302,84 @@ texture_progress = ExtResource("1_3wupg")
 
 [node name="Bouncy Things" type="Node" parent="."]
 
-[node name="BALL11" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
-position = Vector2(892, -18)
+[node name="BALL11" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(923, -56)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+elephant = NodePath("../../Elephant")
 
-[node name="BALL2" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL2" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(190, -115)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL3" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL3" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(371, -215)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL4" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL4" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(545, -34)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL5" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL5" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(694, -208)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL6" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL6" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(596, -399)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL7" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL7" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(411, -471)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL8" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL8" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(724, -531)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL9" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL9" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(405, 128)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL10" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL10" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(598, 511)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL12" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL12" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(500, 432)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL13" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL13" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(723, 449)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL14" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL14" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(757, 211)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL15" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL15" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(887, 305)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL16" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL16" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(360, 313)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL17" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL17" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(166, 198)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL18" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL18" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(266, -8)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL19" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL19" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(657, 79)
+elephant = NodePath("../../Elephant")
 
-[node name="BALL20" parent="Bouncy Things" instance=ExtResource("12_rtpvq")]
+[node name="BALL20" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
 position = Vector2(874, -240)
+elephant = NodePath("../../Elephant")
 
 [node name="Spinny Arena" type="Node2D" parent="."]
 

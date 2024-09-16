@@ -12,9 +12,7 @@ bounce = 1.5
 [node name="BALL" type="RigidBody2D"]
 position = Vector2(911, 148)
 physics_material_override = SubResource("PhysicsMaterial_36y5f")
-gravity_scale = 0.0
 script = ExtResource("1_mirxa")
-speed = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.239018, 0.239018)

@@ -17,6 +17,10 @@ func _init():
 
 @export var meter: TextureProgressBar
 
+@export var floatSpeed: float
+
+@export var blalonSprite: Sprite2D
+
 var watering: bool = false
 
 var juiceMax = 30.0
@@ -28,6 +32,7 @@ var inJuice: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$BodySprite.texture = bodies[0]
+	blalonSprite.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -52,3 +57,10 @@ func _process(_delta):
 		$BodySprite.texture = bodies[1]
 	else:
 		$BodySprite.texture = bodies[0]
+
+func _physics_process(delta: float) -> void:
+	if Input.is_action_pressed("Float"):
+		apply_central_impulse(Vector2(0, -1) * floatSpeed)
+		blalonSprite.visible = true
+	else:
+		blalonSprite.visible = false
