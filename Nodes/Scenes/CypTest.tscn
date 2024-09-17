@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b5oop54venjk5"]
+[gd_scene load_steps=35 format=3 uid="uid://b5oop54venjk5"]
 
 [ext_resource type="Texture2D" uid="uid://c6d864xravhap" path="res://Assets/Art/Other/icon.svg" id="1_3wupg"]
 [ext_resource type="PackedScene" uid="uid://ddivybrsb0klj" path="res://Assets/Prefabs/fire_bg.tscn" id="1_mmdk1"]
@@ -17,6 +17,17 @@
 [ext_resource type="PackedScene" uid="uid://dmcvwkg8tno0g" path="res://Assets/Prefabs/ball.tscn" id="12_rtpvq"]
 [ext_resource type="Script" path="res://Scripts/spinny_arena.gd" id="14_a1j5c"]
 [ext_resource type="Texture2D" uid="uid://g8gg3gtdijut" path="res://Assets/Art/Other/apple-1122537_1280.jpg" id="14_r2jl6"]
+[ext_resource type="Texture2D" uid="uid://bpcihcx7ie4ey" path="res://Assets/Art/Title.png" id="17_fkv84"]
+[ext_resource type="Script" path="res://Nodes/Scenes/weather_machines.gd" id="18_h26mc"]
+[ext_resource type="Script" path="res://Nodes/Scenes/machine_1.gd" id="19_86bh8"]
+[ext_resource type="Texture2D" uid="uid://2ejuoj4kr6ee" path="res://Assets/Art/squirrel-3786845_1280.jpg" id="20_aattd"]
+[ext_resource type="Texture2D" uid="uid://dq0286jctpl31" path="res://Assets/Art/weather machine.png" id="20_ku2x8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3kvm"]
+size = Vector2(721, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sy0oo"]
+radius = 48.0104
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_edq8i"]
 bounce = 0.15
@@ -48,13 +59,182 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 _data = [Vector2(0, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.9, 0.43956), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="LabelSettings" id="LabelSettings_2huro"]
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldplv"]
 size = Vector2(157, 119)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3kvm"]
-size = Vector2(721, 20)
-
 [node name="CypTest" type="Node2D"]
+
+[node name="Weather Machines" type="Node2D" parent="." node_paths=PackedStringArray("scoreTxt", "win")]
+script = ExtResource("18_h26mc")
+scoreTxt = NodePath("../UI/Score")
+win = NodePath("../Elephant/WIN")
+
+[node name="Machine 1" type="Area2D" parent="Weather Machines" node_paths=PackedStringArray("mainSprite", "wall", "counter", "win")]
+position = Vector2(92, 382)
+script = ExtResource("19_86bh8")
+deadSprite = ExtResource("20_aattd")
+mainSprite = NodePath("Sprite2D")
+wall = NodePath("Disappear Wall")
+counter = NodePath("..")
+win = NodePath("../../Elephant/WIN")
+
+[node name="Disappear Wall" type="AnimatableBody2D" parent="Weather Machines/Machine 1"]
+position = Vector2(2076, -1528)
+rotation = -1.48276
+scale = Vector2(3.03071, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Weather Machines/Machine 1/Disappear Wall"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(-0.496697, 0.0215667)
+texture = ExtResource("20_aattd")
+
+[node name="Shape" type="CollisionShape2D" parent="Weather Machines/Machine 1/Disappear Wall"]
+position = Vector2(0.5, 0)
+scale = Vector2(0.894443, 0.966597)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weather Machines/Machine 1"]
+texture = ExtResource("20_ku2x8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weather Machines/Machine 1"]
+position = Vector2(263, 41)
+shape = SubResource("CircleShape2D_sy0oo")
+
+[node name="Machine 2" type="Area2D" parent="Weather Machines" node_paths=PackedStringArray("mainSprite", "wall", "counter")]
+position = Vector2(3361, -1167)
+script = ExtResource("19_86bh8")
+deadSprite = ExtResource("20_aattd")
+mainSprite = NodePath("Sprite2D")
+wall = NodePath("Disappear Wall")
+counter = NodePath("..")
+
+[node name="Disappear Wall" type="AnimatableBody2D" parent="Weather Machines/Machine 2"]
+position = Vector2(-182, 413)
+rotation = -3.11049
+scale = Vector2(3.03071, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Weather Machines/Machine 2/Disappear Wall"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(-0.496697, 0.0215667)
+texture = ExtResource("20_aattd")
+
+[node name="Shape" type="CollisionShape2D" parent="Weather Machines/Machine 2/Disappear Wall"]
+position = Vector2(0.5, 0)
+scale = Vector2(0.894443, 0.966597)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weather Machines/Machine 2"]
+texture = ExtResource("20_ku2x8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weather Machines/Machine 2"]
+position = Vector2(263, 41)
+shape = SubResource("CircleShape2D_sy0oo")
+
+[node name="Machine 3" type="Area2D" parent="Weather Machines" node_paths=PackedStringArray("mainSprite", "wall", "counter")]
+position = Vector2(7677, 711)
+script = ExtResource("19_86bh8")
+deadSprite = ExtResource("20_aattd")
+mainSprite = NodePath("Sprite2D")
+wall = NodePath("Disappear Wall")
+counter = NodePath("..")
+
+[node name="Disappear Wall" type="AnimatableBody2D" parent="Weather Machines/Machine 3"]
+position = Vector2(1758, -317)
+rotation = -3.11049
+scale = Vector2(3.03071, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Weather Machines/Machine 3/Disappear Wall"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(-0.496697, 0.0215667)
+texture = ExtResource("20_aattd")
+
+[node name="Shape" type="CollisionShape2D" parent="Weather Machines/Machine 3/Disappear Wall"]
+position = Vector2(0.5, 0)
+scale = Vector2(0.894443, 0.966597)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weather Machines/Machine 3"]
+texture = ExtResource("20_ku2x8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weather Machines/Machine 3"]
+position = Vector2(263, 41)
+shape = SubResource("CircleShape2D_sy0oo")
+
+[node name="Machine 4" type="Area2D" parent="Weather Machines" node_paths=PackedStringArray("mainSprite", "wall", "counter")]
+position = Vector2(10595, -1803)
+script = ExtResource("19_86bh8")
+deadSprite = ExtResource("20_aattd")
+mainSprite = NodePath("Sprite2D")
+wall = NodePath("Disappear Wall")
+counter = NodePath("..")
+
+[node name="Disappear Wall" type="AnimatableBody2D" parent="Weather Machines/Machine 4"]
+position = Vector2(842, 877)
+rotation = -3.75843
+scale = Vector2(3.03071, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Weather Machines/Machine 4/Disappear Wall"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(-0.496697, 0.0215667)
+texture = ExtResource("20_aattd")
+
+[node name="Shape" type="CollisionShape2D" parent="Weather Machines/Machine 4/Disappear Wall"]
+position = Vector2(0.5, 0)
+scale = Vector2(0.894443, 0.966597)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weather Machines/Machine 4"]
+texture = ExtResource("20_ku2x8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weather Machines/Machine 4"]
+position = Vector2(263, 41)
+shape = SubResource("CircleShape2D_sy0oo")
+
+[node name="Machine 5" type="Area2D" parent="Weather Machines" node_paths=PackedStringArray("mainSprite", "wall", "counter", "win")]
+position = Vector2(15282, -97)
+rotation = 0.0690659
+script = ExtResource("19_86bh8")
+deadSprite = ExtResource("20_aattd")
+mainSprite = NodePath("Sprite2D")
+wall = NodePath("Disappear Wall")
+counter = NodePath("..")
+isLast = true
+win = NodePath("../../Elephant/WIN")
+
+[node name="Disappear Wall" type="AnimatableBody2D" parent="Weather Machines/Machine 5"]
+position = Vector2(776.249, 440.48)
+rotation = -3.75843
+scale = Vector2(3.03071, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Weather Machines/Machine 5/Disappear Wall"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(-0.496697, 0.0215667)
+texture = ExtResource("20_aattd")
+
+[node name="Shape" type="CollisionShape2D" parent="Weather Machines/Machine 5/Disappear Wall"]
+position = Vector2(0.5, 0)
+scale = Vector2(0.894443, 0.966597)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weather Machines/Machine 5"]
+texture = ExtResource("20_ku2x8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weather Machines/Machine 5"]
+position = Vector2(263, 41)
+shape = SubResource("CircleShape2D_sy0oo")
 
 [node name="FIRE" type="Node2D" parent="."]
 visible = false
@@ -256,6 +436,23 @@ z_index = -10
 scale = Vector2(0.920117, 0.761125)
 texture = ExtResource("12_2goxj")
 
+[node name="AudioListener2D" type="AudioListener2D" parent="Elephant/Camera2D"]
+
+[node name="WIN" type="Node2D" parent="Elephant"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Elephant/WIN"]
+scale = Vector2(0.495923, 0.476582)
+texture = ExtResource("17_fkv84")
+
+[node name="Label" type="Label" parent="Elephant/WIN"]
+offset_left = -150.0
+offset_top = -38.0
+offset_right = -29.0
+offset_bottom = -15.0
+scale = Vector2(3.39815, 10.4276)
+text = "YOU WIN!!!"
+label_settings = SubResource("LabelSettings_2huro")
+
 [node name="JuiceArea" type="Area2D" parent="."]
 position = Vector2(339, 536)
 collision_layer = 4
@@ -278,7 +475,80 @@ offset_right = 22.0
 offset_bottom = -32.0
 text = "ORNAG JUSE"
 
+[node name="JuiceArea2" type="Area2D" parent="."]
+position = Vector2(1310, -496)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("8_5vvm3")
+
+[node name="Sprite2D" type="Sprite2D" parent="JuiceArea2"]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(0.122266, 0.165621)
+texture = ExtResource("5_sx40q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JuiceArea2"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ldplv")
+
+[node name="Label" type="Label" parent="JuiceArea2"]
+offset_left = -75.0
+offset_top = -55.0
+offset_right = 22.0
+offset_bottom = -32.0
+text = "ORNAG JUSE"
+
+[node name="JuiceArea3" type="Area2D" parent="."]
+position = Vector2(-214, -1125)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("8_5vvm3")
+
+[node name="Sprite2D" type="Sprite2D" parent="JuiceArea3"]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(0.122266, 0.165621)
+texture = ExtResource("5_sx40q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JuiceArea3"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ldplv")
+
+[node name="Label" type="Label" parent="JuiceArea3"]
+offset_left = -75.0
+offset_top = -55.0
+offset_right = 22.0
+offset_bottom = -32.0
+text = "ORNAG JUSE"
+
+[node name="JuiceArea4" type="Area2D" parent="."]
+position = Vector2(637, -1677)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("8_5vvm3")
+
+[node name="Sprite2D" type="Sprite2D" parent="JuiceArea4"]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(0.122266, 0.165621)
+texture = ExtResource("5_sx40q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JuiceArea4"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ldplv")
+
+[node name="Label" type="Label" parent="JuiceArea4"]
+offset_left = -75.0
+offset_top = -55.0
+offset_right = 22.0
+offset_bottom = -32.0
+text = "ORNAG JUSE"
+
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="UI"]
+offset_left = 623.0
+offset_top = 577.0
+offset_right = 748.0
+offset_bottom = 626.0
+text = "score!!"
 
 [node name="c" type="Control" parent="UI"]
 layout_mode = 3
@@ -314,108 +584,210 @@ miss ornagj uise"
 [node name="Bouncy Things" type="Node" parent="."]
 
 [node name="BALL11" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(923, -56)
+position = Vector2(14162, -406)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(14150, -202)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL2" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(190, -115)
+position = Vector2(13429, -465)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL3" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(371, -215)
+position = Vector2(13610, -565)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL4" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(545, -34)
+position = Vector2(13784, -384)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL5" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(694, -208)
+position = Vector2(13933, -558)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL6" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(596, -399)
+position = Vector2(13835, -749)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL7" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(411, -471)
+position = Vector2(13650, -821)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL8" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(724, -531)
+position = Vector2(13963, -881)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL9" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(405, 128)
+position = Vector2(13644, -222)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL10" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(598, 511)
+position = Vector2(13837, 161)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL12" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(500, 432)
+position = Vector2(13739, 82)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL13" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(723, 449)
+position = Vector2(13962, 99)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL14" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(757, 211)
+position = Vector2(13996, -139)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL15" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(887, 305)
+position = Vector2(14126, -45)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL16" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(360, 313)
+position = Vector2(13599, -37)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL17" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(166, 198)
+position = Vector2(13405, -152)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL18" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(266, -8)
+position = Vector2(13505, -358)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL19" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(657, 79)
+position = Vector2(13896, -271)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="BALL20" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
-position = Vector2(874, -240)
+position = Vector2(14113, -590)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL21" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(4098, 119)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL22" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(4086, 323)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL23" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3365, 60)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL24" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3546, -40)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL25" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3720, 141)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL26" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3869, -33)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL27" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3771, -224)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL28" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3586, -296)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL29" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3899, -356)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL30" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3580, 303)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL31" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3773, 686)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL32" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3675, 607)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL33" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3898, 624)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL34" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3932, 386)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL35" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(4062, 480)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL36" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3535, 488)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL37" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3341, 373)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL38" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3441, 167)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL39" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(3832, 254)
+speed = 50.0
+elephant = NodePath("../../Elephant")
+
+[node name="BALL40" parent="Bouncy Things" node_paths=PackedStringArray("elephant") instance=ExtResource("12_rtpvq")]
+position = Vector2(4049, -65)
 speed = 50.0
 elephant = NodePath("../../Elephant")
 
 [node name="Spinny Arena" type="Node2D" parent="."]
 
 [node name="Floor" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(582, 607)
+position = Vector2(642, 834)
+scale = Vector2(3.03072, -23.1429)
 collision_layer = 3
 collision_mask = 3
 
@@ -425,6 +797,354 @@ scale = Vector2(5.64844, 0.171875)
 texture = ExtResource("1_3wupg")
 
 [node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor7" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(606, -2231)
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor7"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor7"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor8" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(-777, -1419)
+rotation = -1.15172
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor8"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor8"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor9" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(2687, -2160)
+rotation = 0.0604887
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor9"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor9"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor10" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(4818, -2025)
+rotation = 0.0604887
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor10"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor10"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor11" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(6928, -1882)
+rotation = 0.0604887
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor11"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor11"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor12" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(5235, -644)
+rotation = 0.0604887
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor12"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor12"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor13" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(3286, 983)
+rotation = 0.0604887
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor13"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor13"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor14" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(4654, 228)
+rotation = -1.28937
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor14"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor14"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor15" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(6115, 299)
+rotation = -1.93821
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor15"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor15"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor16" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(7419, 1147)
+rotation = 0.0744244
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor16"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor16"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor17" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(9415, -375)
+rotation = 0.0744244
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor17"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor17"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor18" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(8901, -2179)
+rotation = 0.0744244
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor18"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor18"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor19" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(10806, -2471)
+rotation = 0.0744244
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor19"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor19"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor20" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(12431, -1925)
+rotation = 0.0744244
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor20"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor20"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor21" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(13993, -1354)
+rotation = 0.0744244
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor21"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor21"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor22" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(12089, 1503)
+rotation = 1.45357
+scale = Vector2(2.6768, 419.861)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor22"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor22"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor23" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(17308, 677)
+rotation = -0.560721
+scale = Vector2(2.6768, 419.861)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor23"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor23"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor4" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(1319, -124)
+scale = Vector2(0.232137, -28.7656)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor4"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor4"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor5" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(-233, -749)
+scale = Vector2(0.232137, -28.7656)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor5"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor5"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor6" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(639, -1283)
+scale = Vector2(0.232137, -28.7656)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor6"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor6"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor2" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(-777, 12)
+rotation = 1.50122
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor2"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor2"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Floor3" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(2076, 27)
+rotation = 1.64924
+scale = Vector2(3.03072, -23.1429)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Floor3"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Floor3"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
@@ -444,7 +1164,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(-18, 602)
+position = Vector2(-90, 711)
 rotation = 1.16567
 collision_layer = 3
 collision_mask = 3
@@ -456,6 +1176,230 @@ scale = Vector2(5.64844, 0.171875)
 texture = ExtResource("1_3wupg")
 
 [node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall15" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(2837, 118)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall15"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall15"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall16" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(3717, 46.0001)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall16"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall16"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall17" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(3744, -1337)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall17"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall17"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall18" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(5306, -1337)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall18"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall18"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall19" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(6886, -1023)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall19"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall19"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall20" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(7110, 225)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall20"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall20"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall21" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(7864, -439)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall21"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall21"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall22" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(8717, -1283)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall22"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall22"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall23" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(8959, 262)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall23"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall23"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall24" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(10252, -1130)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall24"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall24"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall25" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(11770, -995)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall25"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall25"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall26" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(11231, -0.000610352)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall26"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall26"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall27" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(12946, -251)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall27"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall27"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s3kvm")
+
+[node name="Wall28" type="AnimatableBody2D" parent="Spinny Arena"]
+position = Vector2(14751, -422)
+rotation = 1.16567
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("14_a1j5c")
+
+[node name="Sprite" type="Sprite2D" parent="Spinny Arena/Wall28"]
+position = Vector2(-0.500015, 7.62939e-06)
+scale = Vector2(5.64844, 0.171875)
+texture = ExtResource("1_3wupg")
+
+[node name="Shape" type="CollisionShape2D" parent="Spinny Arena/Wall28"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
@@ -476,7 +1420,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall3" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(-107, 1356)
+position = Vector2(-92, -192)
 rotation = -1.02772
 collision_layer = 3
 collision_mask = 3
@@ -492,7 +1436,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall4" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(1104, 1407)
+position = Vector2(1119, -141)
 rotation = 0.95453
 collision_layer = 3
 collision_mask = 3
@@ -508,7 +1452,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall5" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(528, 1555)
+position = Vector2(543, 7)
 rotation = 0.95453
 collision_layer = 3
 collision_mask = 3
@@ -524,7 +1468,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall6" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(-711, 2098)
+position = Vector2(-761, -1692)
 rotation = 0.95453
 collision_layer = 3
 collision_mask = 3
@@ -540,7 +1484,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall7" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(183, 2426)
+position = Vector2(133, -1364)
 rotation = 0.95453
 collision_layer = 3
 collision_mask = 3
@@ -556,7 +1500,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall8" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(1235, 2398)
+position = Vector2(1185, -1392)
 rotation = 0.95453
 collision_layer = 3
 collision_mask = 3
@@ -572,7 +1516,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall9" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(2146, 2115)
+position = Vector2(2096, -1675)
 rotation = 0.95453
 collision_layer = 3
 collision_mask = 3
@@ -588,7 +1532,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall10" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(2970, 2947)
+position = Vector2(2920, -843)
 rotation = 0.95453
 collision_layer = 3
 collision_mask = 3
@@ -604,7 +1548,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall11" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(2066, 3419)
+position = Vector2(2016, -371)
 rotation = 0.95453
 collision_layer = 3
 collision_mask = 3
@@ -620,7 +1564,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall12" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(906, 3651)
+position = Vector2(856, -139)
 rotation = 0.95453
 collision_layer = 3
 collision_mask = 3
@@ -636,7 +1580,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall13" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(-398, 3619)
+position = Vector2(-448, -171)
 rotation = 0.95453
 collision_layer = 3
 collision_mask = 3
@@ -652,7 +1596,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_s3kvm")
 
 [node name="Wall14" type="AnimatableBody2D" parent="Spinny Arena"]
-position = Vector2(-1622, 3067)
+position = Vector2(-1672, -723)
 rotation = 0.95453
 collision_layer = 3
 collision_mask = 3
@@ -669,3 +1613,9 @@ shape = SubResource("RectangleShape2D_s3kvm")
 
 [connection signal="body_entered" from="JuiceArea" to="JuiceArea" method="TrunkEnter"]
 [connection signal="body_exited" from="JuiceArea" to="JuiceArea" method="TrunkExit"]
+[connection signal="body_entered" from="JuiceArea2" to="JuiceArea2" method="TrunkEnter"]
+[connection signal="body_exited" from="JuiceArea2" to="JuiceArea2" method="TrunkExit"]
+[connection signal="body_entered" from="JuiceArea3" to="JuiceArea3" method="TrunkEnter"]
+[connection signal="body_exited" from="JuiceArea3" to="JuiceArea3" method="TrunkExit"]
+[connection signal="body_entered" from="JuiceArea4" to="JuiceArea4" method="TrunkEnter"]
+[connection signal="body_exited" from="JuiceArea4" to="JuiceArea4" method="TrunkExit"]
